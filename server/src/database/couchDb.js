@@ -483,21 +483,22 @@ class CouchDb {
     }
     
     async getBatchId(dst) {
+        console.log("dst: ", dst);
         const mangoQuery = {
-            selector: {
-                availableStock: {
-                    $gt: '0'
+            "selector": {
+                "distributor": {
+                    "$eq": dst
                 },
-                distributor: {
-                    $eq: dst
+                "state": {
+                    "$eq": "Distribution"
                 },
-                state: {
-                    $eq: 'Distribution'
-                },
+                "availableStock": {
+                    "$gt": 0
+                }
             }
         }
         const data = await this.couch.mango('mychannel_drugcontract', mangoQuery).then(({data, headers, status}) => {
-            const batches = data.docs.map(batch => { return batch._id });
+            const batches = data.docs.map(batch => { return batch.batchNum });
             return batches;
         }, err => {
             console.log('Error getting drug batches. ', err);

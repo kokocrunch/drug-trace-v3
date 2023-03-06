@@ -79,7 +79,7 @@ export default {
       });
   },
   created() {
-    // setTimeout(() => this.$router.push("/"), 5000);
+    setTimeout(() => this.$router.push("/"), 5000);
   },
 };
 </script>

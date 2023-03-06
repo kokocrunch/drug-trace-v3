@@ -54,6 +54,7 @@
                 :rules="[(v) => !!v || 'This field is required']"
                 label="Distributor"
                 required
+                color="teal darken-2"
               ></v-select>
 
               <v-autocomplete
@@ -319,6 +320,7 @@ export default {
             () => {
               this.snackbar = true;
               this.resetForm();
+              location.reload();
             },
             (err) => {
               console.log("Error submitting complaint.");
