@@ -59,8 +59,8 @@ export async function signUp(req, res) {
             from: `"PharmaNet" <pharmanet2022@gmail.com>`,
             to: `${email}`,
             subject: "PharmaNet email confirmation",
-            text: `Please confirm your email by clicking the following link: ${webConfig.clientURL}/api/verified/${base64}`,
-            html: `Please confirm your email by clicking the following link: ${webConfig.clientURL}/api/verified/${base64}`,
+            text: `Please confirm your email by clicking the following link: ${webConfig.clientURL}/verified/${base64}`,
+            html: `Please confirm your email by clicking the following link: ${webConfig.clientURL}/verified/${base64}`,
         }).then((info) => {
             console.log('Transporter mail info ', info);
         }).catch(console.error);

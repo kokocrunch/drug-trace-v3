@@ -69,6 +69,7 @@ export default {
     return {};
   },
   beforeMount() {
+    console.log(this.$route.params.verifyCode);
     AuthService.verifyEmail(this.$route.params.verifyCode)
       .then((data) => {
         console.log(data);
