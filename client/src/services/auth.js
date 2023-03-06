@@ -44,9 +44,8 @@ class AuthService {
 
   static verifyEmail(code) {
     return new Promise((resolve, reject) => {
-      const url = "/verify/" + code;
       axios
-        .get(url)
+        .get("/verify/" + code)
         .then((res) => {
           resolve(res.data.token);
         })

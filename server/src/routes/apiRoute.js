@@ -1,6 +1,6 @@
 'use strict';
 
-import { query, Router } from 'express';
+import { Router } from 'express';
 const router = Router();
 
 import { signUp, signIn, signOut, verifyEmail, getUser, getDst, getRtl } from '../controller/userController';

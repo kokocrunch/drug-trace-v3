@@ -280,12 +280,13 @@ export default {
 
       if (this.formHasErrors == false) {
         this.snackLoading = true;
+        
         BcService.add({
           manufacturer: this.manufacturer,
           distributor: this.user.name,
           distributorId: this.user._id,
           description: this.description,
-          batchNum: this.batchno,
+          batchNum: this.batchno.toUpperCase(),
           quantity: this.quantity,
           expiry: this.date,
           unitPrice: this.price,

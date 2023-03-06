@@ -337,9 +337,9 @@ export default {
   },
 
   mounted() {
-    if (this.user.accountType == "Retailer") {
+    if (this.user.accountType == "Retailer" && this.user.verified == "yes") {
       this.$router.push("retailer");
-    } else if (this.user.accountType == "Distributor") {
+    } else if (this.user.accountType == "Distributor" && this.user.verified == "yes") {
       this.$router.push("distributor");
     }
   },

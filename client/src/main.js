@@ -5,7 +5,7 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import axios from "axios";
 
-axios.defaults.baseURL = "api/";
+axios.defaults.baseURL = "http://localhost:3000/api/";
 Vue.config.productionTip = false;
 
 new Vue({
@@ -13,15 +13,4 @@ new Vue({
   store,
   vuetify,
   render: (h) => h(App),
-  // mounted() {
-  //   axios.interceptors.response.use(response => {
-  //     return response;
-  //   }, error => {
-  //     if (401 === error.response.status) {
-  //         store.dispatch('logout'); // something wrong
-  //         router.push('/');
-  //     }
-  //     return Promise.reject(error);
-  //   });
-  // }
 }).$mount("#app");

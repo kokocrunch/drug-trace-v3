@@ -56,21 +56,6 @@ class GatewayBc {
         }
     }
 
-    async exists(batchNum) {
-        try {
-            const gateway = new Gateway();
-            await gateway.connect(this.ccp, { wallet: this.wallet, identity: 'pharmanetUser', discovery: { enabled: true, asLocalhost: true } });
-            const network = await gateway.getNetwork('mychannel');
-            const contract = network.getContract('drugcontract');
-
-            await contract.evaluateTransaction('assetExists', JSON.stringify(batchNum));
-            await gateway.disconnect();
-        } catch (err) {
-            console.error(`Failed to submit assetExists: ${err}`);
-            process.exit(1);
-        }
-    }
-
     async add(batch) {
         try {
             const gateway = new Gateway();

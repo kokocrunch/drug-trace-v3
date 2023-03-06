@@ -118,7 +118,6 @@ class DrugContract extends Contract {
 		}
 	}
 
-	// distributor id, distributor, manufacturer, product description, quantity, batch or lot number, expiry date, unit amount
 	async addDrug(ctx, data) {
 		const request = JSON.parse(data);
 		const { batchNum, quantity, distributorId, distributor } = request;
@@ -136,7 +135,6 @@ class DrugContract extends Contract {
 		console.info(`Drug batch ${batchNum} has been added to the blockchain.`);
 	}
 
-	// batchNum, retailerId, retailer, quantity
 	async transferDrug(ctx, data) {
 		const request = JSON.parse(data);
 		const { batchNum, retailerId, quantity, retailer } = request;
@@ -169,11 +167,6 @@ class DrugContract extends Contract {
 	}
 
 	/* Query functions */
-	async queryBatch(ctx, key) {
-		const record = await ctx.stub.getState(key);
-		return record.toString();
-	}
-
 	async queryDrugHistory(ctx, batchNum) {
 		console.info(`Querying transaction history for batch ${batchNum}`);
 		let iterator = await ctx.stub.getHistoryForKey(batchNum);
@@ -197,8 +190,6 @@ class DrugContract extends Contract {
 			if (res.value && res.value.value.toString()) {
 				let jsonRes = {};
 				if (isHistory && isHistory === true) {
-					console.log('res.value.txid: ', res.value.txId);
-					console.log('res.value.timestamp: ', res.value.timestamp);
 					jsonRes.TxId = res.value.txId;
 					jsonRes.Timestamp = res.value.timestamp;
 					jsonRes.Timestamp = new Date((res.value.timestamp.seconds * 1000));
@@ -211,33 +202,25 @@ class DrugContract extends Contract {
 						jsonRes.Value = res.value.value.toString('utf8');
 					}
 				} else {
-					console.log(`Key: ${res.value.key}`);
+					// console.log(`Key: ${res.value.key}`);
 					jsonRes.Key = res.value.key;
 					try {
 						jsonRes.Record = JSON.parse(res.value.value.toString('utf8'));
-						console.log(`Value: ${jsonRes.Record}`);
+						// console.log(`Value: ${jsonRes.Record}`);
 					} catch (err) {
 						console.log(err);
 						jsonRes.Record = res.value.value.toString('utf8');
 					}
 				}
-				console.log('jsonres: ', jsonRes);
 				allResults.push(jsonRes);
 			}
 			res = await iterator.next();
 		}
 		iterator.close();
-		console.log(JSON.stringify('allResults: ', allResults));
 		return allResults;
 	}
 
 	/* Other functions */
-	async assetExists(ctx, batchNum) {
-		console.info(`Checking if drug batch ${batchNum} exists.`);
-		let assetState = await ctx.stub.getState(batchNum);
-		return assetState && assetState.length > 0;
-	}
-
 	async deleteData(ctx, key) {
 		await ctx.stub.deleteState(key);
 	}

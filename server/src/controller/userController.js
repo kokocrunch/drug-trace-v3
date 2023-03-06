@@ -59,8 +59,8 @@ export async function signUp(req, res) {
             from: `"PharmaNet" <pharmanet2022@gmail.com>`,
             to: `${email}`,
             subject: "PharmaNet email confirmation",
-            text: `Please confirm your email by clicking the following link: ${webConfig}/verified/${base64}`,
-            html: `Please confirm your email by clicking the following link: ${webConfig}/verified/${base64}`,
+            text: `Please confirm your email by clicking the following link: ${webConfig.clientURL}/verified/${base64}`,
+            html: `Please confirm your email by clicking the following link: ${webConfig.clientURL}/verified/${base64}`,
         }).then((info) => {
             console.log('Transporter mail info ', info);
         }).catch(console.error);
@@ -149,7 +149,8 @@ export async function getUser(req, res) {
 
 export async function verifyEmail(req, res) {
     const couch = new CouchDb();
-    let email = Buffer.from(req.params.verifyCode, 'base64').toString('utf-8');
+    let email = Buffer.from(req.params['verifyCode'], 'base64').toString('utf-8');
+    console.log('verif email: ', email);
 
     const data = await couch.getUser(email);
     if (data.verified != 'yes') {

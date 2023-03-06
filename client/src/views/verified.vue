@@ -69,7 +69,6 @@ export default {
     return {};
   },
   beforeMount() {
-    console.log(this.$route.params.verifyCode);
     AuthService.verifyEmail(this.$route.params.verifyCode)
       .then((data) => {
         console.log(data);
@@ -79,7 +78,7 @@ export default {
       });
   },
   created() {
-    setTimeout(() => this.$router.push("/"), 5000);
+    // setTimeout(() => this.$router.push("/"), 5000);
   },
 };
 </script>
