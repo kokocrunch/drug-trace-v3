@@ -1,7 +1,7 @@
 <template>
   <div class="Verify">
     <v-app-bar app color="#FFFFFF" outlined prominent dark>
-      <v-img max-height="120" max-width="200" src="../logo.jpg"></v-img>
+      <v-img max-height="120" max-width="200" src="../assets/logo.jpg"></v-img>
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" absolute temporary>

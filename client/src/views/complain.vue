@@ -1,7 +1,7 @@
 <template>
   <div class="Complain">
     <v-app-bar app color="#FFFFFF" outlined prominent dark>
-      <v-img max-height="120" max-width="200" src="../logo.jpg"></v-img>
+      <v-img max-height="120" max-width="200" src="../assets/logo.jpg"></v-img>
 
       <v-spacer></v-spacer>
 
